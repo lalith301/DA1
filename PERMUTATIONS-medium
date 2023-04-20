@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+void swap(int* a, int* b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void permute(int nums[], int start, int end)
+{
+    if (start == end) // Base case: We've reached the end of the array
+    {
+        // Print the current permutation
+        for (int i = 0; i <= end; i++)
+            printf("%d ", nums[i]);
+        printf("\n");
+        return;
+    }
+
+    // Recursive case: Swap each element with the first element and permute the remaining elements
+    for (int i = start; i <= end; i++)
+    {
+        swap(&nums[start], &nums[i]);
+        permute(nums, start + 1, end);
+        swap(&nums[start], &nums[i]); // Backtrack
+    }
+}
+
+int main()
+{
+    int nums[] = {1, 2, 3};
+    int n = sizeof(nums) / sizeof(nums[0]);
+    permute(nums, 0, n - 1);
+    return 0;
+}
