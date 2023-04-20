@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int reverse(int x) {
+    int rev= 0;
+    while (x != 0) {
+        int d = x % 10;
+        x /= 10;
+        rev = rev * 10 + d;
+    }
+    return rev;
+}
+
+int main() {
+    int x;
+    printf("Enter a + integer: ");
+    scanf("%d", &x);
+    int reversed = reverse(x);
+    printf("The digits of %d reversed is %d\n", x, reversed);
+    return 0;
+}
